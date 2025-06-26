@@ -1,7 +1,12 @@
-
+import JumboTron from '../components/JumboTron'
+import { createPortal } from 'react-dom'
 const Homepage = () => {
   return (
-    <div>Homepage</div>
+    <div>
+      <div>
+       
+      </div>
+    </div>
   )
 }
 
