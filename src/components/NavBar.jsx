@@ -1,5 +1,5 @@
 
-import { Shirt } from 'lucide-react';
+import { Dumbbell, Heart, House, Shirt } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 import { NavLink } from 'react-router-dom'
 import JumboTron from './JumboTron';
@@ -15,16 +15,16 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a className="navbar-brand" ><Shirt /></a>
+            
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to={'/'}>Home</NavLink>
+                <NavLink className="nav-link " aria-current="page" to={'/'}><House className='me-1'  />Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to={'/Products'}>Prodotti</NavLink>
+                <NavLink className="nav-link " aria-current="page" to={'/products'}><Dumbbell className='me-1' />Prodotti</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to={'/whitelist'}>Lista preferiti</NavLink>
+                <NavLink className="nav-link " aria-current="page" to={'/whitelist'}><Heart className='me-1' />Lista preferiti</NavLink>
               </li>
             </ul>
             <form className={"d-flex me-lg-3 mb-lg-0 mb-3"} role="search">

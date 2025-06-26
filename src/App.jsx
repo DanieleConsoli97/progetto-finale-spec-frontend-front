@@ -3,6 +3,7 @@ import DefaultLayout from './layout/DefaultLayout'
 import HomePage from './pages/HomePage'
 import { GlobalProvider } from './context/GlobalProvider'
 import ListaProdotti from './pages/ListaProdotti'
+import ProductDetails from './pages/ProductDetails'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route element={<DefaultLayout />}>
           <Route path='/' element={<HomePage />} />
           <Route path='/products' element={<ListaProdotti/>}/>
+          <Route path='/product/:id' element={<ProductDetails/>}/>
         </Route>
       </Routes>
     </GlobalProvider>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {useGlobalContext} from '../context/GlobalProvider'
+import { useGlobalContext } from '../context/GlobalProvider'
 import ProductRow from '../components/ProductRow'
 
 const ListaProdotti = () => {
@@ -12,13 +12,17 @@ const ListaProdotti = () => {
             {products === null && (
                 <p className="text-center text-red-300">nessun Prodotto trovato</p>
             )}
-            {products && (
-                products?.map((p) => {
-                    return (
-                        <ProductRow key={p.id} product={p}/>
-                    )
-                })
-            )}
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'>
+
+                {products && (
+                    products?.map((p) => {
+                        return (
+
+                            <ProductRow key={p.id} product={p} />
+                        )
+                    })
+                )}
+            </div>
         </div>
     )
 }

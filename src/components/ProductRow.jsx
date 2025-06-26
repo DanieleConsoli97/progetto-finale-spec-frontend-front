@@ -1,7 +1,7 @@
 
 import Card from '../components/Card'
 
-const ProductRow = ({product}) => {
+const ProductRow = ({ product }) => {
     return (
         <>
             {product === undefined && (
@@ -10,9 +10,12 @@ const ProductRow = ({product}) => {
             {product === null && (
                 <p className="text-center text-red-300">nessun Prodotto trovato</p>
             )}
-            {product && (
-                <Card product={product}/>
-            )}
+            <div className='col'>
+                {product && (
+
+                    <Card product={product} />
+                )}
+            </div>
         </>
     )
 }
