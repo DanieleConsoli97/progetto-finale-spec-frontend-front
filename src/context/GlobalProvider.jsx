@@ -3,9 +3,14 @@ import { createContext } from "react"
 import { useProduct } from "../hooks/useProduct"
 const GlobalContext = createContext()
 export const GlobalProvider = ({ children }) => {
-  const { products,setQuery } = useProduct()
+  const { products,setQuery,setCategoryQuery,categoryList } = useProduct()
 
-  const value = { products,setQuery }
+  const value = { 
+    products,
+    setQuery,
+    setCategoryQuery,
+    categoryList 
+  }
  
   return (
     <GlobalContext.Provider value={value}>

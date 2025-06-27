@@ -2,7 +2,7 @@
 import Card from '../../public/Card'
 
 const ProductRow = ({ product,link }) => {
-
+console.log("render")
     return (
         <>
             {product === undefined && (
@@ -13,7 +13,6 @@ const ProductRow = ({ product,link }) => {
             )}
             <div className='col'>
                 {product && (
-
                     <Card product={product} link={link} />
                 )}
             </div>

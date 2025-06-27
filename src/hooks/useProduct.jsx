@@ -5,9 +5,12 @@ const useProduct = () => {
 
     const [products, setProduct] = useState()
     const [query, setQuery] = useState("")
+    const [categoryQuery, setCategoryQuery] = useState("")
+    const [allProduct, setAllProduct] = useState()
 
+    const [categoryList, setCategoryList] = useState([])
 
-    const indexProduct = async (textQuery="",categoryQuery="") => {
+    const indexProduct = async (textQuery = "", categoryQuery = "") => {
 
         try {
             const response = await fetch(`${BASE_URL}/products?search=${textQuery}&category=${categoryQuery}`)
@@ -34,10 +37,34 @@ const useProduct = () => {
 
     }
 
-    useEffect(() => { indexProduct(query) },[query])   
+    useEffect(() => {
+        const loadAllProductsForCategories = async () => {
+            try {
+                const response = await fetch(`${BASE_URL}/products`) // Senza filtri
+                if (response.ok) {
+                    const data = await response.json()
+                    setAllProduct(data)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        console.log("biscotti")
+        loadAllProductsForCategories()
+    }, [])
+
+    useEffect(() => {
+
+        setCategoryList(allProduct?.map((p) => p.category).filter((category, index, array) => array.indexOf(category) === index))
+    }, [allProduct])
+
+
+    useEffect(() => { indexProduct(query, categoryQuery) }, [query, categoryQuery])
     return {
         products,
-        setQuery
+        setQuery,
+        setCategoryQuery,
+        categoryList
     }
 }
 

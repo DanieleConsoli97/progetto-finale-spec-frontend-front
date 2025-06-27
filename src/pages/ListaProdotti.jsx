@@ -2,7 +2,8 @@
 import { useGlobalContext } from '../context/GlobalProvider'
 import ProductRow from '../components/ProductRow'
 import { Dumbbell } from 'lucide-react'
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import { memo } from "react"
 const imageUrls = [
     "../assets/nike-pegasus.jpg",
     "../assets/nike-pegasus.jpg",
@@ -22,26 +23,40 @@ const imageUrls = [
     "../assets/nike-academy.jpg",
     "../assets/ua-heatgear.jpg"
 ];
+
+const ProductRowMemo = memo(ProductRow)
+
 const ListaProdotti = () => {
-    const { products,setQuery } = useGlobalContext()
-    const handleChange = (e)=> {setQuery(e.target.value)}
-    
-    const productsMemo = (useMemo(()=>{
-        if(products){
-            return(
+    const { products, setQuery, setCategoryQuery, categoryList } = useGlobalContext()
+
+    const handleChangeInput = (e) => { setQuery(e.target.value) }
+    const handleChangeCategory = (e) => { setCategoryQuery(e.target.value) }
+    const productsMemo = (useMemo(() => {
+        if (products) {
+            return (
                 products?.map((p) => {
-                        console.log(imageUrls[parseInt(p.id) - 1])
-                        console.log(parseInt(p.id) - 1)
-                        return (
-                            <ProductRow key={p.id} product={p} link={imageUrls[(parseInt(p.id) - 1)]} />
-                        )
-                    })
+                    console.log(imageUrls[parseInt(p.id) - 1])
+                    console.log(parseInt(p.id) - 1)
+                    return (
+                        <ProductRowMemo key={p.id} product={p} link={imageUrls[(parseInt(p.id) - 1)]} />
+                    )
+                })
             )
-        }else{
+        }
+    }, [products]))
+
+    //FUNCTION - funzione che mi restituisce un array di categorie senza doppioni
+    const CategorySelect = () => {
+        if (products) {
+
+            return (
+                products.map((p) => p.category).filter((category, index, array) => array.indexOf(category) === index)
+            )
+        } else {
             <p>caricamento</p>
         }
+    }
 
-    },[products]))
 
     return (
 
@@ -56,11 +71,34 @@ const ListaProdotti = () => {
                 <Dumbbell className='me-1' />
                 <h2 className='m-0'>Lista Prodotti</h2>
             </div>
-            <input type="text" onChange={handleChange} />
+            <div className="mb-4">
+                <div className="input-group">
+                    <input onChange={handleChangeInput} type="text" className="form-control flex-grow-1" placeholder="Quantità" aria-label="Quantità" />
+                    <select onChange={handleChangeCategory} className="form-select w-auto" id="unita2" style={{ maxWidth: "120px" }}>
+                        {categoryList === undefined && (
+                            <option>Caricamento</option>
+                        )}
+                        {categoryList === null && (
+                            <option>nessuna categoria</option>
+                        )}
+                        {/* map dell'array di categorie */}
+                        <option value={""}>Categoria</option>
+                        {categoryList?.map(category => {
+                            console.log("category", category)
+                            return (
+                                <option key={category} value={category}>
+                                    {category}
+                                </option>)
+                        }
+                        )}
+                    </select>
+                </div>
+            </div>
+
+
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5'>
-            
                 {products && (
-                   productsMemo
+                    productsMemo
                 )}
             </div>
         </div>

@@ -10,10 +10,10 @@ const Homepage = () => {
   return (
     <>
       {products === undefined && (
-        <p className="text-center text-violet-200">Caricamento Prodotti...</p>
+        <p className="text-center text-violet-200">Caricamento ...</p>
       )}
       {products === null && (
-        <p className="text-center text-red-300">nessun Prodotto trovato</p>
+        ""
       )}
 
       <div className="row align-items-md-stretch my-5">
