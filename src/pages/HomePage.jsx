@@ -1,5 +1,6 @@
 import { useGlobalContext } from '../context/GlobalProvider'
 import CardImg from "../assets/nike-pegasus.jpg"
+import dayjs from 'dayjs'
 const Homepage = () => {
 
   const { products } = useGlobalContext()
@@ -36,7 +37,7 @@ const Homepage = () => {
                   <div className="card-body">
                     <h5 className="card-title">{productHome.title}</h5>
                     <p className="card-text">{productHome.category?.toUpperCase()}</p>
-                    <p className="card-text"><small className="text-body-secondary"><strong>Aggiunto il:</strong> {productHome.createdAt}</small></p>
+                    <p className="card-text"><small className="text-body-secondary"><strong>Aggiunto il: </strong>{dayjs('2019-01-25').format('DD/MM/YYYY')}</small></p>
                     <button className='btn btn-outline-primary btn-sm'>Scopri di più</button>
                   </div>
                 </div>
