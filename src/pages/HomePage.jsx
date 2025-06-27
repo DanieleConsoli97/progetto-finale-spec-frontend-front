@@ -1,7 +1,7 @@
 import JumboTron from '../components/JumboTron'
 
 import { useGlobalContext } from '../context/GlobalProvider'
-import CardImg from "../assets/pegasus.jpg"
+import CardImg from "../assets/nike-pegasus.jpg"
 const Homepage = () => {
 
   const { products } = useGlobalContext()

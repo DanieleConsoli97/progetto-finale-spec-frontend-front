@@ -1,7 +1,8 @@
 
-import Card from '../components/Card'
+import Card from '../../public/Card'
 
-const ProductRow = ({ product }) => {
+const ProductRow = ({ product,link }) => {
+
     return (
         <>
             {product === undefined && (
@@ -13,7 +14,7 @@ const ProductRow = ({ product }) => {
             <div className='col'>
                 {product && (
 
-                    <Card product={product} />
+                    <Card product={product} link={link} />
                 )}
             </div>
         </>
