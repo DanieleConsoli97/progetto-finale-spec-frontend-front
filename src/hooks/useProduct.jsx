@@ -1,16 +1,16 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 const BASE_URL = import.meta.env.VITE_BASE_URL_SERVER;
-const useProduct = (query="") => {
-    const queryText=String(query)
+const useProduct = () => {
 
     const [products, setProduct] = useState()
+    const [query, setQuery] = useState("")
 
 
-   const indexProduct= async (queryText) => {
+    const indexProduct = async (textQuery="",categoryQuery="") => {
 
         try {
-            const response = await fetch(`${BASE_URL}/products?search=${queryText}`)
+            const response = await fetch(`${BASE_URL}/products?search=${textQuery}&category=${categoryQuery}`)
             if (!response.ok) {
                 throw new Error("Errore nella recezione dei dati")
             }
@@ -33,11 +33,13 @@ const useProduct = (query="") => {
         }
 
     }
-    useEffect(() => { indexProduct(queryText)}, [queryText])
 
+    useEffect(() => { indexProduct(query) },[query])   
     return {
-        products
+        products,
+        setQuery
     }
 }
+
 
 export { useProduct }
