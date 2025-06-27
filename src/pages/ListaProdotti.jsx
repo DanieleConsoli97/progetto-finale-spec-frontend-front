@@ -1,40 +1,49 @@
 
 import { useGlobalContext } from '../context/GlobalProvider'
 import ProductRow from '../components/ProductRow'
-import { Dumbbell } from 'lucide-react'
-import { useEffect, useMemo } from 'react';
+import { ArrowDownUp, ArrowUpDown, Dumbbell } from 'lucide-react'
+import { useMemo, useState } from 'react';
 import { memo } from "react"
 const imageUrls = [
-    "../assets/nike-pegasus.jpg",
-    "../assets/nike-pegasus.jpg",
-    "../assets/adidas-ultraboost.jpg",
-    "../assets/ua-tech-shirt.jpg",
-    "../assets/adidas-shorts.jpg",
-    "../assets/nike-leggings.jpg",
-    "../assets/ua-hoodie.jpg",
-    "../assets/adidas-tee.jpg",
-    "../assets/nike-joggers.jpg",
-    "../assets/ua-bra.jpg",
-    "../assets/adidas-terrex.jpg",
-    "../assets/nike-court.jpg",
-    "../assets/ua-jacket.jpg",
-    "../assets/adidas-tiro.jpg",
-    "../assets/adidas-tiro.jpg",
-    "../assets/nike-academy.jpg",
-    "../assets/ua-heatgear.jpg"
+    "nike-pegasus.jpg",
+    "nike-pegasus.jpg",
+    "adidas-ultraboost.jpg",
+    "ua-tech-shirt.jpg",
+    "adidas-shorts.jpg",
+    "nike-leggings.jpg",
+    "ua-hoodie.jpg",
+    "adidas-tee.jpg",
+    "nike-joggers.jpg",
+    "ua-bra.jpg",
+    "adidas-terrex.jpg",
+    "nike-court.jpg",
+    "ua-jacket.jpg",
+    "adidas-tiro.jpg",
+    "adidas-tiro.jpg",
+    "nike-academy.jpg",
+    "ua-heatgear.jpg"
 ];
 
 const ProductRowMemo = memo(ProductRow)
 
 const ListaProdotti = () => {
-    const { products, setQuery, setCategoryQuery, categoryList } = useGlobalContext()
 
+    const { products, setQuery, setCategoryQuery, categoryList } = useGlobalContext()
+    const [sortOrder, setSortOrder] = useState(1)
     const handleChangeInput = (e) => { setQuery(e.target.value) }
     const handleChangeCategory = (e) => { setCategoryQuery(e.target.value) }
+
+    const sortedProducts = useMemo(() => {
+        if (!products) {
+            return []
+        }
+        return [...products].sort((a, b) => sortOrder * a.title.localeCompare(b.title))
+    }, [products, sortOrder])
+
     const productsMemo = (useMemo(() => {
-        if (products) {
+        if (sortedProducts) {
             return (
-                products?.map((p) => {
+                sortedProducts?.map((p) => {
                     console.log(imageUrls[parseInt(p.id) - 1])
                     console.log(parseInt(p.id) - 1)
                     return (
@@ -43,20 +52,7 @@ const ListaProdotti = () => {
                 })
             )
         }
-    }, [products]))
-
-    //FUNCTION - funzione che mi restituisce un array di categorie senza doppioni
-    const CategorySelect = () => {
-        if (products) {
-
-            return (
-                products.map((p) => p.category).filter((category, index, array) => array.indexOf(category) === index)
-            )
-        } else {
-            <p>caricamento</p>
-        }
-    }
-
+    }, [sortedProducts]))
 
     return (
 
@@ -67,13 +63,13 @@ const ListaProdotti = () => {
             {products === null && (
                 <p className="text-center text-red-300">nessun Prodotto trovato</p>
             )}
-            <div className='mt-3 d-flex align-items-center'>
+            <div className='my-3 d-flex align-items-center'>
                 <Dumbbell className='me-1' />
                 <h2 className='m-0'>Lista Prodotti</h2>
             </div>
             <div className="mb-4">
                 <div className="input-group">
-                    <input onChange={handleChangeInput} type="text" className="form-control flex-grow-1" placeholder="Quantità" aria-label="Quantità" />
+                    <input onChange={handleChangeInput} type="text" className="form-control flex-grow-1" placeholder="Ricerca un prodotto" aria-label="Quantità" />
                     <select onChange={handleChangeCategory} className="form-select w-auto" id="unita2" style={{ maxWidth: "120px" }}>
                         {categoryList === undefined && (
                             <option>Caricamento</option>
@@ -84,7 +80,6 @@ const ListaProdotti = () => {
                         {/* map dell'array di categorie */}
                         <option value={""}>Categoria</option>
                         {categoryList?.map(category => {
-                            console.log("category", category)
                             return (
                                 <option key={category} value={category}>
                                     {category}
@@ -92,6 +87,13 @@ const ListaProdotti = () => {
                         }
                         )}
                     </select>
+                    <button onClick={() => setSortOrder((c) => -c)}
+                        className="btn btn-outline-secondary"
+                        type="button"
+                        id="button-addon2">
+                        Ordina Per Nome
+                        {sortOrder === 1 ? <ArrowUpDown className='ms-2' /> : <ArrowDownUp className='ms-2' />}
+                    </button>
                 </div>
             </div>
 

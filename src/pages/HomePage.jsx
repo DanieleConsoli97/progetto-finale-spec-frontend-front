@@ -36,8 +36,8 @@ const Homepage = () => {
                   <div className="card-body">
                     <h5 className="card-title">{productHome.title}</h5>
                     <p className="card-text">{productHome.category?.toUpperCase()}</p>
-                    <p className="card-text"><small className="text-body-secondary">{productHome.createdAt}</small></p>
-                    <button className='btn btn-outline-secondary'>Scopri di più</button>
+                    <p className="card-text"><small className="text-body-secondary"><strong>Aggiunto il:</strong> {productHome.createdAt}</small></p>
+                    <button className='btn btn-outline-primary btn-sm'>Scopri di più</button>
                   </div>
                 </div>
               </div>

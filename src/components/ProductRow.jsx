@@ -1,5 +1,5 @@
 
-import Card from '../../public/Card'
+import Card from './Card'
 
 const ProductRow = ({ product,link }) => {
 console.log("render")
