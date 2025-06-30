@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
-
+import { useGlobalContext } from "../context/GlobalProvider"
 import { FolderHeart, ListCollapse } from "lucide-react"
-const Card = ({ product, link }) => {
 
+const Card = ({ product, link}) => {
+const  {updateStorage}=useGlobalContext()
     const { id, category, title } = product
-    console.log(link.replace("../assets"))
+
     return (
         <>
             {product === undefined && (
@@ -23,9 +24,9 @@ const Card = ({ product, link }) => {
                             <p className="card-text text-muted text-capitalize">{category}</p>
                         </div>
 
-                        <div className="d-grid gap-2 d-sm-flex justify-content-sm-between mt-3" >
+                        <div className="d-grid gap-2 d-sm-flex justify-content-sm-between mt-3 " >
                             <Link to={`/product/${id}`} className="btn btn-outline-primary btn-sm" ><ListCollapse className={"me-1"} /> Scopri di più</Link>
-                            <button
+                            <button onClick={()=> updateStorage(prev => [...prev, product])}
                                 className="btn btn-outline-danger btn-sm"
                             > <FolderHeart />
                             </button>

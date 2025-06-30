@@ -4,6 +4,7 @@ import ProductRow from '../components/ProductRow'
 import { ArrowDownUp, ArrowUpDown, Dumbbell } from 'lucide-react'
 import { useMemo, useState } from 'react';
 import { memo } from "react"
+
 const imageUrls = [
     "nike-pegasus.jpg",
     "nike-pegasus.jpg",
@@ -30,8 +31,10 @@ const ListaProdotti = () => {
 
     const { products, setQuery, setCategoryQuery, categoryList } = useGlobalContext()
     const [sortOrder, setSortOrder] = useState(1)
+    
     const handleChangeInput = (e) => { setQuery(e.target.value) }
     const handleChangeCategory = (e) => { setCategoryQuery(e.target.value) }
+    
 
     const sortedProducts = useMemo(() => {
         if (!products) {
@@ -77,7 +80,7 @@ const ListaProdotti = () => {
                         {categoryList === null && (
                             <option>nessuna categoria</option>
                         )}
-                        {/* map dell'array di categorie */}
+                       
                         <option value={""}>Categoria</option>
                         {categoryList?.map(category => {
                             return (

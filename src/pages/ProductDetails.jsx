@@ -10,12 +10,11 @@ const ProductDetails = () => {
 
   useEffect(() => { 
     productsByid(params.id) 
+    
   }, [params.id])
-
   if (!singleProduct) {
     return null
   }
-
   const { product } = singleProduct
 
  

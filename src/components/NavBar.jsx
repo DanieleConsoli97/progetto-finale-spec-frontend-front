@@ -4,9 +4,9 @@ import DarkModeToggle from './DarkModeToggle';
 import { NavLink } from 'react-router-dom'
 import JumboTron from './JumboTron';
 import { useLocation } from 'react-router-dom';
+import WishList from './WishList';
 const NavBar = () => {
   const path = useLocation()
-  console.log(path)
   return (
     <>
       <nav className='navbar navbar-expand-lg border-bottom border-body'>
@@ -15,25 +15,28 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            
+
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to={'/'}><House className='me-1'  />Home</NavLink>
+                <NavLink className="nav-link " aria-current="page" to={'/'}><House className='me-1' />Home</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link " aria-current="page" to={'/products'}><Dumbbell className='me-1' />Prodotti</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link " aria-current="page" to={'/whitelist'}><Heart className='me-1' />Lista preferiti</NavLink>
+                <NavLink className="nav-link " aria-current="page" to={'/productcompare'}><Heart className='me-1' />Comparatore prodotti</NavLink>
+              </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <Heart className='me-1' />Lista preferiti
+                </a>
+                <ul className="dropdown-menu m-2  p-0 border-0 ">
+                  <WishList />
+                </ul>
               </li>
             </ul>
-            <form className={"d-flex me-lg-3 mb-lg-0 mb-3"} role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
             <DarkModeToggle />
           </div>
-
         </div>
       </nav>
       {path.pathname === "/" ? <JumboTron /> : ""}

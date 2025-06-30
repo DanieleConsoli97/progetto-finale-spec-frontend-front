@@ -29,6 +29,7 @@ const useProduct = () => {
                 throw new Error("Nessun prodotto trovato")
             }
             setProduct(data)
+           
 
         } catch (error) {
             setProduct(null)
@@ -94,7 +95,8 @@ const useProduct = () => {
         setCategoryQuery,
         categoryList,
         productsByid,
-        singleProduct
+        singleProduct,
+        indexProduct
     }
 }
 
