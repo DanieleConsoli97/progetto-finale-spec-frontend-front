@@ -31,7 +31,7 @@ export const GlobalProvider = ({ children }) => {
     "nike-academy.jpg",
     "ua-heatgear.jpg"
 ];
-  const { products,setQuery,setCategoryQuery,categoryList,productsByid,singleProduct } = useProduct()
+  const { products,setQuery,setCategoryQuery,categoryList,productsByid,singleProduct,indexProduct } = useProduct()
 
   const value = { 
     products,
@@ -44,7 +44,8 @@ export const GlobalProvider = ({ children }) => {
     wishListData,
     updateStorage,
     productCompare,
-    updateProductCompare
+    updateProductCompare,
+    indexProduct
   }
 
   return (

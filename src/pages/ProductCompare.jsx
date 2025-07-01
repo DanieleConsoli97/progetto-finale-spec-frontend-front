@@ -1,6 +1,7 @@
 import { CopyPlus, GitCompareArrows } from "lucide-react"
-import CompareCard from "../components/compareCard"
+import CompareCard from "../components/CompareCard"
 import { useState } from "react"
+import CompareSearchProduct from "../components/CompareSearchProduct"
 
 const ProductCompare = () => {
     const [compare, setCompare] = useState([0])
@@ -13,9 +14,9 @@ const ProductCompare = () => {
 
     }
     const handleDelete = () => {
-      
-        if ( compare.length > 1) {
-             setCompare(prev => prev.slice(0, -1));
+
+        if (compare.length > 1) {
+            setCompare(prev => prev.slice(0, -1));
         }
 
     }
@@ -37,25 +38,29 @@ const ProductCompare = () => {
                     <div>nessun prodotto da comparare</div>
                 )
             }
-           
+
             <div className="card-group">
                 {
-                    compare && compare.length > 0  && (
+                    compare && compare.length > 0 && (
                         compare.map((index) => {
-                            return <CompareCard key={index} />
+                            return <CompareSearchProduct key={index} />
                         })
                     )
                 }
             </div>
             {
-                compare.length===4 ?(
+                compare.length === 4 ? (
                     <div className="bg-danger text-center">
                         <p>E' possibile comparare solo 4 prodotti alla volta</p>
                     </div>
-                    
-                ):("")
+
+                ) : ("")
             }
-            <button disabled={compare.length === 4}   onClick={() => { handleAdd() }}><CopyPlus /> Aggiungi un prodotto</button> <button disabled={compare.length === 1} onClick={() => { handleDelete() }}><CopyPlus /> Rimuovi prodotto </button>
+            <div className="d-flex justify-content-center ">
+               <button className="btn btn-outline-light" disabled={compare.length === 4} onClick={() => { handleAdd() }}><CopyPlus /> Aggiungi un prodotto</button> 
+               <button className="btn btn-outline-light" disabled={compare.length === 1} onClick={() => { handleDelete() }}><CopyPlus /> Rimuovi prodotto </button> 
+            </div>
+            
         </>
     )
 }

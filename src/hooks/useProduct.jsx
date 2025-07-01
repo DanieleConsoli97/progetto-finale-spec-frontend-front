@@ -7,7 +7,7 @@ const useProduct = () => {
     const [query, setQuery] = useState("")
     const [categoryQuery, setCategoryQuery] = useState("")
     const [allProduct, setAllProduct] = useState()
-    const [singleProduct,setSingleProduct] = useState()
+    const [singleProduct, setSingleProduct] = useState()
     const [categoryList, setCategoryList] = useState([])
 
     const indexProduct = async (textQuery = "", categoryQuery = "") => {
@@ -29,7 +29,8 @@ const useProduct = () => {
                 throw new Error("Nessun prodotto trovato")
             }
             setProduct(data)
-           
+            console.log(data)
+            return data
 
         } catch (error) {
             setProduct(null)
@@ -61,7 +62,7 @@ const useProduct = () => {
 
 
     useEffect(() => { indexProduct(query, categoryQuery) }, [query, categoryQuery])
-    
+
 
     const productsByid = async (id) => {
 
@@ -82,7 +83,7 @@ const useProduct = () => {
                 throw new Error("Nessun prodotto trovato")
             }
             setSingleProduct(data)
-
+            console.log(data)
         } catch (error) {
             setProduct(null)
             console.log(error)

@@ -1,41 +1,46 @@
-import { useEffect, useState } from "react"
-import { useGlobalContext } from "../context/GlobalProvider"
-useEffect
-const compareCard = () => {
-  const { productsByid, singleProduct, imageUrls } = useGlobalContext()
-  
-  const [product,setProduct]=useState()
+import { useEffect, useState } from "react";
+import { useGlobalContext } from "../context/GlobalProvider";
+
+const CompareCard = ({ productItem,remove }) => {
+  const { productsByid, singleProduct, imageUrls } = useGlobalContext();
+
+  useEffect(() => {
+    if (productItem) {
+      productsByid(productItem);
+    }
+  }, [productItem]);
+
+  // ✅ Gestione safe dei casi iniziali
+  if (!singleProduct) {
+    return <p className="text-center text-violet-200">Caricamento Prodotto...</p>;
+  }
+
+  if (!singleProduct.product) {
+    return <p className="text-center text-red-300">Nessun Prodotto trovato</p>;
+  }
+
+  const { product } = singleProduct;
+
   return (
-    <>
-      {product === undefined && (
-        <p className="text-center text-violet-200">Caricamento Prodotti...</p>
-      )}
-      {product === null && (
-        <p className="text-center text-red-300">nessun Prodotto trovato</p>
-      )}
-      {product && (
-
-        <div className="card" style={{ width: "18rem" }}>
-          <img src="..." className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">An item</li>
-            <li className="list-group-item">A second item</li>
-            <li className="list-group-item">A third item</li>
-          </ul>
-          <div className="card-body">
-            <a href="#" className="card-link">Card link</a>
-            <a href="#" className="card-link">Another link</a>
-          </div>
+    <div className="card" style={{ width: "18rem" }}>
+      <div className="card-body">
+        <h5 className="card-title">{product.title}</h5>
+        <p className="card-text">{product.description}</p>
+      </div>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item"><strong>Prezzo:</strong> €{product.price}</li>
+        <li className="list-group-item"><strong>Marca:</strong> {product.brand}</li>
+        <li className="list-group-item"><strong>Categoria:</strong> {product.category}</li>
+        <li className="list-group-item"><strong>Colore:</strong> {product.color}</li>
+        <li className="list-group-item"><strong>Taglie:</strong> {Array.isArray(product.size) ? product.size.join(", ") : product.size}</li>
+        <li className="list-group-item"><strong>Disponibilità:</strong> {product.inStock ? "In stock" : "Esaurito"}</li>
+        <div>
+          <button className="w-100 btn btn-outline-light" onClick={()=>remove(productItem)} > clicca per rimuovere il prodotto</button>
         </div>
+      </ul>
+      
+    </div>
+  );
+};
 
-      )}
-    </>
-
-  )
-}
-
-export default compareCard
+export default CompareCard;

@@ -1,199 +1,75 @@
-# 🖼️ Cosa devi realizzare
+# 🏋️‍♂️ Hero Sport Shop — Frontend E-commerce
 
-Una SPA che simula l’esperienza di un utente non autenticato, che può:
-
-- ✅ Sfogliare, cercare e filtrare record  
-- ✅ Confrontare più elementi tra loro  
-- ✅ Salvare i preferiti  
-- ❌ Non può creare, modificare o cancellare record  
+Benvenuti su **Hero Sport Shop**, un'applicazione **e-commerce frontend** sviluppata con **React** e **Vite**, pensata per offrire un'esperienza d'acquisto intuitiva e veloce nel mondo degli articoli sportivi. Dalla navigazione dei prodotti alla comparazione, fino alla gestione dei preferiti — ogni funzionalità è progettata con attenzione all'utente e alle performance.
 
 ---
 
-## 🔍 Tecnologie da utilizzare
+## ✨ Funzionalità Principali
 
-Il progetto deve essere sviluppato esclusivamente con **React** in **JavaScript**, utilizzando solo le tecnologie viste durante il corso.
+* 🔍 **Catalogo Prodotti**
+  Esplora i prodotti con **filtri per categoria** e **ricerca in tempo reale**.
 
-È consentito però l’uso di librerie esterne per la gestione dello **styling**, come ad esempio:
+* 📄 **Dettaglio Prodotto**
+  Schede prodotto dettagliate con tutte le informazioni necessarie.
 
-- Tailwind CSS  
-- Bootstrap  
-- styled-components  
+* ⚖️ **Comparazione Prodotti**
+  Confronta fino a **4 articoli** contemporaneamente in modo semplice e visivo.
 
-👉 Il backend è già pronto: il tuo compito è sviluppare tutta la parte **frontend**.
+* ❤️ **Lista Preferiti**
+  Salva i tuoi prodotti preferiti con **persistenza locale** tramite `localStorage`.
 
----
+* 🌗 **Dark Mode**
+  Passa al tema scuro con un semplice toggle.
 
-## 🎨 Tematica a scelta
-
-Scegli liberamente l’argomento del tuo comparatore.
-
-✅ Qualsiasi entità con proprietà confrontabili è valida!
-
-Esempi di ispirazione:
-
-- 📱 Dispositivi (smartphone, tablet, smartwatch…)  
-- 🎧 Multimedia (televisori, cuffie, fotocamere…)  
-- 💻 Informatica (laptop, GPU, monitor…)  
-- 🎮 Software (videogiochi, OS, streaming…)  
-- ✈️ Viaggi (città, destinazioni…)  
-- 🚲 Trasporti (auto, bici, monopattini…)  
-- 🧠 Educazione (università, corsi…)  
-- 🍎 Alimenti (tipi di frutta, vini, caffè…)  
-- 🏠 Casa (elettrodomestici, giochi da tavolo, mobili…)  
+* 📱 **Design Responsive**
+  Ottimizzato per **smartphone, tablet e desktop**.
 
 ---
 
-## 🛠️ Backend pronto all’uso
+## 🛠️ Stack Tecnologico
 
-Clona questo repo:
+**Frontend:**
 
-🔗 https://github.com/boolean-it/progetto-finale-spec-frontend-back
+* ⚛️ React 19
+* ⚡ Vite
+* 🧭 React Router DOM
+* 🎨 Bootstrap 5
+* 🌙 Lucide React (icone moderne)
+* 🕒 Day.js (gestione date)
 
-All’interno troverai un file chiamato `types.ts`.
+**Gestione Stato:**
 
----
+* 🧠 Context API
+* 💾 LocalStorage (persistenza lato client)
 
-## 🔧 Definisci le tue risorse
+## 🧩 Componenti Chiave
 
-Nel file `types.ts`, definisci una o più risorse, ad esempio:
-
-```ts
-export type Product = {
-  title: string;
-  category: string;
-};
-````
-
-✅ Devono essere esportate
-✅ Devono contenere almeno `title` e `category`
-
-💡 Puoi aggiungere tutte le proprietà che vuoi (es. `price`, `brand`, `releaseYear`...), ad eccezione di `id`, `createdAt` e `updatedAt` che vengono gestite automaticamente dal server.
-
-Il backend genererà automaticamente:
-
-* Un file `.json` in `/database`
-* Endpoint RESTful:
-  `/products`, `/products/:id`, ecc.
+* **NavBar** – Navigazione principale, include il toggle per il tema
+* **Card** – Componente generico per visualizzare i prodotti
+* **CompareCard** – Card specifica per il confronto tra prodotti
+* **WishList** – Gestione dei prodotti preferiti
+* **ProductDetails** – Pagina dettagliata del singolo prodotto
+* **ProductCompare** – Pagina per confrontare più articoli
 
 ---
 
-## 📡 API disponibili
+## 📝 Note di Sviluppo
 
-* `GET /{tipo}s` → Lista dei record (supporta `?search=` e `?category=`)
-* `GET /{tipo}s/:id` → Dettaglio record
-* `POST /{tipo}s` → Crea un record
-* `PUT /{tipo}s/:id` → Modifica un record
-* `DELETE /{tipo}s/:id` → Cancella un record
+* 📦 Tutti i dati dei **preferiti** sono gestiti tramite `localStorage`
+* 🚀 Ottimizzazione del rendering tramite `React.memo`
+* ⚠️ Gestione errori e **loading state** centralizzata per una UX fluida
 
 ---
 
-## 💾 Dove vengono salvati i dati?
+## 💡 Suggerimenti Futuri
 
-Ogni risorsa ha un file dedicato in `/database`, es: `product.json`.
-
-Puoi popolare i dati:
-
-* Manualmente nel `.json`
-* Tramite API (`fetch`, Postman...)
-
-📌 Devono esserci **almeno 10 record validi** per ogni risorsa.
+* ✅ Integrazione con autenticazione utente
+* 📦 Connessione con API di pagamento (es. Stripe)
+* 🔔 Notifiche per wishlist o prodotti esauriti
+* 🗃️ Pannello Admin per la gestione prodotti
 
 ---
 
-## ⚠️ Attenzione!
-
-### ❌ NON puoi modificare:
-
-* La logica del server (`.ts`, `.js`)
-* Le rotte API
-* Il comportamento degli endpoint
-
-### ✅ PUOI modificare solo:
-
-* Il file `types.ts` per definire la risorsa
-* I file `.json` nella cartella `/database`
+Se ti è piaciuto il progetto, lascia una ⭐ su GitHub o contribuisci con una PR!
 
 ---
-
-## 🥉 Requisiti minimi
-
-* ✅ Gestione di una risorsa
-* ✅ Lista con:
-
-  * Ricerca `title`
-  * Filtro per `category`
-  * Ordinamento A-Z e Z-A
-* ✅ Pagina di dettaglio del record
-* ✅ Comparatore di **2 record** affiancati
-* ✅ Sistema di preferiti:
-
-  * Aggiunta/rimozione in ogni sezione
-  * Sempre accessibili (es. sidebar o icona fissa)
-
----
-
-## 🥈 Requisiti consigliati (facoltativi)
-
-* 🔄 Comparatore per **2+ record**
-* 🔍 Debounce sulla ricerca
-* 💾 Persistenza preferiti (localStorage)
-* 😕 Gestione stati vuoti:
-
-  * Nessun risultato trovato
-  * Lista preferiti vuota
-  * Nessun record selezionato per il confronto
-
----
-
-## 🥇 Requisiti aggiuntivi (facoltativi)
-
-* 🔀 Gestione di **più risorse** nella stessa SPA
-* ✏️ CRUD completo dal frontend:
-
-  * Creazione
-  * Modifica
-  * Eliminazione
-  * Validazione input
-
----
-
-## 🎯 BONUS (facoltativo)
-
-* 💻 Seconda versione del progetto in **TypeScript**
-
-  > ⚠️ La versione principale deve comunque rimanere in JavaScript.
-
----
-
-## ⏱️ Come affrontare il progetto
-
-Il progetto è pensato per essere svolto in **7 giorni**.
-
-📌 Obiettivo principale: **completare tutti i Requisiti Minimi**
-
-❌ Anche uno solo mancante comporta penalizzazione all’esame.
-
-⛔ Non è necessario lavorare 10-15 giorni per i requisiti avanzati.
-✅ È importante invece avere un progetto **stabile, completo e solido**.
-
----
-
-## 📦 Consegna del progetto
-
-Assicurati di includere nel push:
-
-* 📁 Cartella `/database` con i file `.json` dei dati
-* 📝 File `types.ts` con la tua risorsa
-
-📌 Devono esserci almeno 10 record coerenti per ciascuna risorsa.
-
-❗ Progetti **senza** questi file potrebbero essere **incompleti o non valutabili**.
-
----
-
-## 💪 Buon lavoro!
-
-
-
-Fammi sapere se vuoi una versione localizzata per il tuo specifico progetto (ad esempio se scegli “Smartphone” o “Videogiochi” come entità)!
-
